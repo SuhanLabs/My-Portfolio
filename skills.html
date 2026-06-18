@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skills | Suhan Qureshi</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet">
+  <style>
+    .skills-wrap { max-width:900px;margin:0 auto;padding:72px 32px 80px; }
+
+    .skills-header { text-align:center;margin-bottom:56px; }
+    .skills-header h1 { font-size:clamp(2rem,4vw,3rem);letter-spacing:-0.5px;margin-bottom:12px; }
+    .skills-header h1 span { background:linear-gradient(135deg,#6366f1,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
+    .skills-header p { color:var(--slate);font-size:16px; }
+
+    .cat-label { font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:var(--slate);margin-bottom:16px;margin-top:40px; }
+    .cat-label:first-of-type { margin-top:0; }
+
+    .skills-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:16px; }
+    .skills-grid-3 { display:grid;grid-template-columns:repeat(3,1fr);gap:16px; }
+
+    .skill-card {
+      background:var(--bg-card);border:1px solid var(--border);border-radius:14px;
+      padding:24px 16px;display:flex;flex-direction:column;align-items:center;gap:12px;
+      cursor:default;transition:all 0.25s ease;position:relative;overflow:hidden;
+    }
+    .skill-card::before {
+      content:'';position:absolute;inset:0;opacity:0;transition:opacity 0.25s;
+      background:radial-gradient(circle at 50% 0%,rgba(99,102,241,0.1),transparent 70%);
+    }
+    .skill-card:hover { border-color:var(--border-hi);transform:translateY(-4px); }
+    .skill-card:hover::before { opacity:1; }
+    .skill-icon { font-size:2.2rem;line-height:1; }
+    .skill-card span { font-size:13px;font-weight:600;color:var(--white);letter-spacing:0.2px; }
+
+    .c-js   { color:#f7df1e; }
+    .c-html { color:#e34f26; }
+    .c-css  { color:#1572b6; }
+    .c-react{ color:#61dafb; }
+    .c-boot { color:#7952b3; }
+    .c-node { color:#8cc84b; }
+    .c-mongo{ color:#47a248; }
+    .c-git  { color:#f05032; }
+    .c-gh   { color:#e2e8f0; }
+    .c-api  { color:#facc15; }
+    .c-exp  { color:#94a3b8; }
+
+    /* CTA */
+    .cta-strip {
+      margin-top:64px;background:var(--bg-card);border:1px solid var(--border);
+      border-radius:20px;padding:48px 40px;text-align:center;position:relative;overflow:hidden;
+    }
+    .cta-strip::before {
+      content:'';position:absolute;top:-60px;left:50%;transform:translateX(-50%);
+      width:400px;height:200px;
+      background:radial-gradient(ellipse,rgba(99,102,241,0.15),transparent 70%);pointer-events:none;
+    }
+    .cta-strip h2 { font-size:clamp(1.5rem,3vw,2.2rem);margin-bottom:12px; }
+    .cta-strip p { color:var(--slate);font-size:15px;max-width:520px;margin:0 auto 28px; }
+
+    @media(max-width:640px) {
+      .skills-grid { grid-template-columns:repeat(2,1fr); }
+      .skills-grid-3 { grid-template-columns:repeat(2,1fr); }
+      .cta-strip { padding:32px 20px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="logo"><i class="ri-code-s-slash-line logo-icon"></i>Suhan<span class="deve">.deve</span></div>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <button class="theme-toggle" id="themeBtn"><i class="ri-moon-line"></i></button>
+      <div class="menu-toggle" id="menuBtn"><i class="ri-menu-line"></i></div>
+    </div>
+    <div class="box">
+      <ul class="list" id="navList">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="About.html">About</a></li>
+        <li><a href="project.html">Projects</a></li>
+        <li><a href="skills.html" class="active">Skills</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="page-bg">
+    <div class="skills-wrap">
+      <div class="skills-header reveal">
+        <span class="section-eyebrow">Expertise</span>
+        <h1>My Technical <span>Toolkit</span></h1>
+        <p>Technologies I use to build fast, responsive, and scalable web applications.</p>
+      </div>
+
+      <p class="cat-label reveal">Frontend</p>
+      <div class="skills-grid reveal reveal-delay-1">
+        <div class="skill-card"><i class="ri-javascript-fill skill-icon c-js"></i><span>JavaScript</span></div>
+        <div class="skill-card"><i class="ri-html5-fill skill-icon c-html"></i><span>HTML5</span></div>
+        <div class="skill-card"><i class="ri-css3-fill skill-icon c-css"></i><span>CSS3</span></div>
+        <div class="skill-card"><i class="ri-reactjs-line skill-icon c-react"></i><span>React.js</span></div>
+      </div>
+      <div class="skills-grid-3 reveal reveal-delay-2" style="margin-top:16px;">
+        <div class="skill-card"><i class="ri-bootstrap-fill skill-icon c-boot"></i><span>Bootstrap</span></div>
+      </div>
+
+      <p class="cat-label reveal">Backend &amp; Database</p>
+      <div class="skills-grid-3 reveal reveal-delay-1">
+        <div class="skill-card"><i class="ri-nodejs-fill skill-icon c-node"></i><span>Node.js</span></div>
+        <div class="skill-card"><i class="ri-server-line skill-icon c-exp"></i><span>Express.js</span></div>
+        <div class="skill-card"><i class="ri-database-2-fill skill-icon c-mongo"></i><span>MongoDB</span></div>
+      </div>
+
+      <p class="cat-label reveal">Tools</p>
+      <div class="skills-grid-3 reveal reveal-delay-1">
+        <div class="skill-card"><i class="ri-git-branch-fill skill-icon c-git"></i><span>Git</span></div>
+        <div class="skill-card"><i class="ri-github-fill skill-icon c-gh"></i><span>GitHub</span></div>
+        <div class="skill-card"><i class="ri-links-line skill-icon c-api"></i><span>REST APIs</span></div>
+      </div>
+
+      <div class="cta-strip reveal">
+        <h2>Let's build something great</h2>
+        <p>These are the technologies powering my projects. If you have an idea that needs a developer, I'd love to collaborate.</p>
+        <a href="contact.html" class="btn-primary" style="display:inline-flex;">
+          <i class="ri-send-plane-line"></i> Start a Conversation
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <span>© 2026 Suhan Qureshi</span>
+    <div style="display:flex;gap:16px;">
+      <a href="https://github.com/SuhanQureshi" target="_blank" style="color:var(--slate);font-size:20px;"><i class="ri-github-line"></i></a>
+      <a href="https://www.linkedin.com/in/Suhan-Qureshi" target="_blank" style="color:var(--slate);font-size:20px;"><i class="ri-linkedin-fill"></i></a>
+    </div>
+  </footer>
+
+  <script>
+    const themeBtn = document.getElementById('themeBtn');
+    const html = document.documentElement;
+    const saved = localStorage.getItem('theme') || 'dark';
+    html.setAttribute('data-theme', saved);
+    themeBtn.querySelector('i').className = saved === 'dark' ? 'ri-moon-line' : 'ri-sun-line';
+    themeBtn.addEventListener('click', () => {
+      const t = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', t); localStorage.setItem('theme', t);
+      themeBtn.querySelector('i').className = t === 'dark' ? 'ri-moon-line' : 'ri-sun-line';
+    });
+    const menuBtn = document.getElementById('menuBtn');
+    const navList = document.getElementById('navList');
+    menuBtn.addEventListener('click', () => {
+      navList.classList.toggle('active');
+      menuBtn.querySelector('i').className = navList.classList.contains('active') ? 'ri-close-line' : 'ri-menu-line';
+    });
+    const observer = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

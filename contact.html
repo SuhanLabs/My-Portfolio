@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | Suhan Qureshi</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet">
+  <style>
+    .contact-wrap { max-width:860px;margin:0 auto;padding:72px 32px 80px; }
+
+    .contact-header { text-align:center;margin-bottom:56px; }
+    .contact-header h1 { font-size:clamp(2rem,4vw,3rem);letter-spacing:-0.5px;margin-bottom:12px; }
+    .contact-header h1 span { background:linear-gradient(135deg,#6366f1,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
+    .contact-header p { color:var(--slate);font-size:16px; }
+
+    .contact-grid { display:grid;grid-template-columns:1fr 1.2fr;gap:32px;align-items:start; }
+
+    .contact-info { display:flex;flex-direction:column;gap:16px; }
+
+    .info-card {
+      background:var(--bg-card);border:1px solid var(--border);border-radius:14px;
+      padding:18px 20px;display:flex;align-items:center;gap:16px;
+      transition:border-color 0.2s;text-decoration:none;color:inherit;
+    }
+    .info-card:hover { border-color:var(--border-hi); }
+
+    .info-icon {
+      width:42px;height:42px;border-radius:10px;
+      background:rgba(99,102,241,0.1);border:1px solid var(--border);
+      display:flex;align-items:center;justify-content:center;font-size:19px;color:var(--indigo);flex-shrink:0;
+    }
+    .info-text .label { font-size:11px;color:var(--slate);text-transform:uppercase;letter-spacing:1px; }
+    .info-text .val { font-size:15px;font-weight:600;color:var(--white);margin-top:2px; }
+
+    /* Form */
+    .contact-form-card {
+      background:var(--bg-card);border:1px solid var(--border);
+      border-radius:18px;padding:36px;
+    }
+    .contact-form-card h2 { font-size:20px;margin-bottom:6px; }
+    .contact-form-card .sub { color:var(--slate);font-size:14px;margin-bottom:28px; }
+
+    .form-group { display:flex;flex-direction:column;gap:6px;margin-bottom:18px; }
+    .form-group label { font-size:13px;font-weight:500;color:var(--slate); }
+    .form-group input, .form-group textarea {
+      width:100%;padding:12px 14px;
+      background:rgba(15,23,42,0.8);border:1px solid var(--border);
+      border-radius:10px;color:var(--white);
+      font-family:'Inter',sans-serif;font-size:14px;outline:none;
+      transition:border-color 0.2s, box-shadow 0.2s;
+    }
+    [data-theme="light"] .form-group input,
+    [data-theme="light"] .form-group textarea {
+      background:rgba(241,245,249,0.9);
+    }
+    .form-group input::placeholder,.form-group textarea::placeholder { color:var(--slate-dim); }
+    .form-group input:focus,.form-group textarea:focus {
+      border-color:var(--indigo);box-shadow:0 0 0 3px rgba(99,102,241,0.15);
+    }
+    .form-group textarea { min-height:120px;resize:vertical; }
+
+    .form-submit {
+      width:100%;padding:13px;background:var(--indigo);color:#fff;border:none;
+      border-radius:10px;font-family:'Inter',sans-serif;font-size:15px;font-weight:600;
+      cursor:pointer;transition:all 0.2s;
+      display:flex;align-items:center;justify-content:center;gap:8px;
+      box-shadow:0 0 24px rgba(99,102,241,0.3);
+    }
+    .form-submit:hover:not(:disabled) { background:#818cf8;transform:translateY(-1px);box-shadow:0 0 36px rgba(99,102,241,0.5); }
+    .form-submit:active { transform:scale(0.98); }
+    .form-submit:disabled { opacity:0.7;cursor:not-allowed; }
+
+    @media(max-width:768px) {
+      .contact-grid { grid-template-columns:1fr; }
+      .contact-form-card { padding:24px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="logo"><i class="ri-code-s-slash-line logo-icon"></i>Suhan<span class="deve">.deve</span></div>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <button class="theme-toggle" id="themeBtn"><i class="ri-moon-line"></i></button>
+      <div class="menu-toggle" id="menuBtn"><i class="ri-menu-line"></i></div>
+    </div>
+    <div class="box">
+      <ul class="list" id="navList">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="About.html">About</a></li>
+        <li><a href="project.html">Projects</a></li>
+        <li><a href="skills.html">Skills</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="page-bg">
+    <div class="contact-wrap">
+      <div class="contact-header reveal">
+        <span class="section-eyebrow">Reach Out</span>
+        <h1>Let's Work <span>Together</span></h1>
+        <p>Available for freelance projects and open to new opportunities. I typically reply within 24 hours.</p>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Left info -->
+        <div class="contact-info reveal">
+          <a href="https://wa.me/918445483230" target="_blank" class="info-card">
+            <div class="info-icon" style="color:#25d366;background:rgba(37,211,102,0.1);border-color:rgba(37,211,102,0.2);">
+              <i class="ri-whatsapp-line"></i>
+            </div>
+            <div class="info-text"><div class="label">WhatsApp</div><div class="val">+91 844 548 3230</div></div>
+          </a>
+          <a href="https://github.com/SuhanQureshi" target="_blank" class="info-card">
+            <div class="info-icon"><i class="ri-github-line"></i></div>
+            <div class="info-text"><div class="label">GitHub</div><div class="val">SuhanQureshi</div></div>
+          </a>
+          <a href="https://www.linkedin.com/in/Suhan-Qureshi" target="_blank" class="info-card">
+            <div class="info-icon" style="color:#0a66c2;background:rgba(10,102,194,0.1);border-color:rgba(10,102,194,0.2);">
+              <i class="ri-linkedin-fill"></i>
+            </div>
+            <div class="info-text"><div class="label">LinkedIn</div><div class="val">Suhan Qureshi</div></div>
+          </a>
+          <div class="info-card" style="background:rgba(99,102,241,0.05);border-color:rgba(99,102,241,0.2);">
+            <div class="info-icon"><i class="ri-time-line"></i></div>
+            <div class="info-text"><div class="label">Response Time</div><div class="val" style="color:#4ade80;">Within 24 hours ⚡</div></div>
+          </div>
+        </div>
+
+        <!-- Right form -->
+        <div class="contact-form-card reveal reveal-delay-1">
+          <h2>Send a Message</h2>
+          <p class="sub">Fill out the form and I'll get back to you soon.</p>
+          <form id="contact-form">
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name" placeholder="Your full name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="hello@example.com" required>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Tell me about your project..." required></textarea>
+            </div>
+            <button type="submit" class="form-submit" id="submitBtn">
+              <i class="ri-send-plane-fill"></i> Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <span>© 2026 Suhan Qureshi</span>
+    <div style="display:flex;gap:16px;">
+      <a href="https://github.com/SuhanQureshi" target="_blank" style="color:var(--slate);font-size:20px;"><i class="ri-github-line"></i></a>
+      <a href="https://www.linkedin.com/in/Suhan-Qureshi" target="_blank" style="color:var(--slate);font-size:20px;"><i class="ri-linkedin-fill"></i></a>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    const themeBtn = document.getElementById('themeBtn');
+    const html = document.documentElement;
+    const saved = localStorage.getItem('theme') || 'dark';
+    html.setAttribute('data-theme', saved);
+    themeBtn.querySelector('i').className = saved === 'dark' ? 'ri-moon-line' : 'ri-sun-line';
+    themeBtn.addEventListener('click', () => {
+      const t = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', t); localStorage.setItem('theme', t);
+      themeBtn.querySelector('i').className = t === 'dark' ? 'ri-moon-line' : 'ri-sun-line';
+    });
+    const menuBtn = document.getElementById('menuBtn');
+    const navList = document.getElementById('navList');
+    menuBtn.addEventListener('click', () => {
+      navList.classList.toggle('active');
+      menuBtn.querySelector('i').className = navList.classList.contains('active') ? 'ri-close-line' : 'ri-menu-line';
+    });
+    const observer = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    emailjs.init("-44C6K0Rx_-l7RNjC");
+    const form = document.getElementById("contact-form");
+    const submitBtn = document.getElementById("submitBtn");
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      submitBtn.innerHTML = '<i class="ri-loader-4-line"></i> Sending...';
+      submitBtn.disabled = true;
+      emailjs.sendForm("service_7xah8mg","template_t0sxc4t",this)
+        .then(() => {
+          submitBtn.innerHTML = '<i class="ri-check-line"></i> Message Sent!';
+          submitBtn.style.background = '#16a34a';
+          form.reset();
+          setTimeout(() => { submitBtn.innerHTML='<i class="ri-send-plane-fill"></i> Send Message';submitBtn.style.background='';submitBtn.disabled=false; }, 3000);
+        })
+        .catch(() => {
+          submitBtn.innerHTML = '<i class="ri-error-warning-line"></i> Failed — Try Again';
+          submitBtn.style.background = '#dc2626'; submitBtn.disabled = false;
+          setTimeout(() => { submitBtn.innerHTML='<i class="ri-send-plane-fill"></i> Send Message';submitBtn.style.background=''; }, 3000);
+        });
+    });
+  </script>
+</body>
+</html>

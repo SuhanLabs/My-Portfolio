@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | Suhan Qureshi</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet">
+  <style>
+    .about-wrap { max-width: 900px; margin: 0 auto; padding: 72px 32px 80px; }
+
+    .about-intro {
+      display: grid; grid-template-columns: 1fr 300px;
+      gap: 56px; align-items: start; margin-bottom: 72px;
+    }
+
+    .about-intro-text h1 { font-size: clamp(2rem,4vw,3rem); margin-bottom: 20px; letter-spacing: -0.5px; }
+    .about-intro-text h1 span {
+      background: linear-gradient(135deg,#6366f1,#a78bfa);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    }
+    .about-intro-text p { color: var(--slate); font-size: 16px; line-height: 1.8; margin-bottom: 18px; }
+
+    /* Photo in about */
+    .about-photo-wrap {
+      display: flex; flex-direction: column; gap: 16px;
+    }
+
+    .about-photo-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 20px; padding: 24px;
+      display: flex; flex-direction: column; align-items: center; gap: 12px;
+      text-align: center; backdrop-filter: blur(8px);
+    }
+
+    .about-photo {
+      width: 110px; height: 110px; border-radius: 50%;
+      object-fit: cover; border: 2px solid var(--border-hi);
+      box-shadow: 0 0 0 5px rgba(99,102,241,0.12);
+    }
+
+    .about-avatar {
+      width: 110px; height: 110px; border-radius: 50%;
+      background: linear-gradient(135deg,#4f46e5,#7c3aed);
+      border: 2px solid var(--border-hi);
+      box-shadow: 0 0 0 5px rgba(99,102,241,0.12);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Space Grotesk',sans-serif; font-size: 38px; font-weight: 700; color:#fff;
+    }
+
+    .about-name { font-family:'Space Grotesk',sans-serif; font-size:16px; font-weight:700; color:var(--pure); }
+    .about-role { font-size:13px; color:var(--slate); }
+    .about-open {
+      padding:4px 12px; background:rgba(74,222,128,0.1);
+      border:1px solid rgba(74,222,128,0.3); border-radius:100px;
+      font-size:12px; color:#4ade80;
+    }
+
+    /* Sidebar info */
+    .sidebar-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 20px; display:flex; flex-direction:column; gap:14px;
+    }
+    .sidebar-row { display:flex; align-items:center; gap:12px; font-size:14px; }
+    .sidebar-row i {
+      width:34px;height:34px;border-radius:9px;
+      background:rgba(99,102,241,0.1);border:1px solid var(--border);
+      display:flex;align-items:center;justify-content:center;color:var(--indigo);font-size:16px;flex-shrink:0;
+    }
+    .sr-label { color:var(--slate);font-size:12px; }
+    .sr-val   { color:var(--white);font-weight:600; }
+
+    /* Resume grid */
+    .resume-grid { display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:48px; }
+
+    .resume-block {
+      background:var(--bg-card);border:1px solid var(--border);
+      border-radius:16px;padding:28px;transition:border-color 0.3s;
+    }
+    .resume-block:hover { border-color:var(--border-hi); }
+
+    .resume-block-title {
+      display:flex;align-items:center;gap:10px;
+      font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:600;
+      text-transform:uppercase;letter-spacing:1.5px;color:var(--indigo);margin-bottom:20px;
+    }
+
+    .edu-item { padding:12px 0;border-bottom:1px solid rgba(99,102,241,0.1); }
+    .edu-item:last-child { border-bottom:none;padding-bottom:0; }
+    .edu-item:first-child { padding-top:0; }
+    .edu-degree { font-weight:600;font-size:15px;color:var(--pure); }
+    .edu-school { color:var(--slate);font-size:13px;margin-top:2px; }
+    .edu-year {
+      display:inline-block;margin-top:6px;padding:2px 10px;
+      background:rgba(99,102,241,0.1);border-radius:100px;font-size:12px;color:#a5b4fc;
+    }
+
+    .skill-tag-list { display:flex;flex-wrap:wrap;gap:8px; }
+    .skill-tag {
+      padding:5px 12px;background:rgba(99,102,241,0.08);
+      border:1px solid var(--border);border-radius:8px;font-size:13px;color:#a5b4fc;font-weight:500;
+    }
+
+    .cat-micro { font-size:11px;color:var(--slate);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;margin-top:12px; }
+    .cat-micro:first-child { margin-top:0; }
+
+    /* Feature strip */
+    .feature-strip { display:grid;grid-template-columns:repeat(3,1fr);gap:20px; }
+    .feature-card {
+      background:var(--bg-card);border:1px solid var(--border);
+      border-radius:16px;padding:28px 24px;transition:all 0.3s;
+    }
+    .feature-card:hover { border-color:var(--border-hi);box-shadow:0 0 32px var(--indigo-glow);transform:translateY(-4px); }
+    .feature-icon {
+      width:48px;height:48px;border-radius:12px;
+      background:rgba(99,102,241,0.1);border:1px solid var(--border);
+      display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--indigo);margin-bottom:16px;
+    }
+    .feature-card h3 { font-size:16px;margin-bottom:8px; }
+    .feature-card p { color:var(--slate);font-size:14px;line-height:1.65; }
+
+    /* Download resume btn */
+    .resume-download {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 9px 20px;
+      background: rgba(99,102,241,0.1);
+      border: 1px solid var(--border-hi);
+      border-radius: 9px; color: #a5b4fc;
+      font-size: 13px; font-weight: 600;
+      transition: all 0.2s; cursor: pointer;
+    }
+    .resume-download:hover { background:rgba(99,102,241,0.2);color:var(--indigo); }
+
+    @media(max-width:768px) {
+      .about-intro { grid-template-columns:1fr;gap:32px; }
+      .resume-grid { grid-template-columns:1fr; }
+      .feature-strip { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="logo"><i class="ri-code-s-slash-line logo-icon"></i>Suhan<span class="deve">.deve</span></div>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <button class="theme-toggle" id="themeBtn" title="Toggle theme"><i class="ri-moon-line"></i></button>
+      <div class="menu-toggle" id="menuBtn"><i class="ri-menu-line"></i></div>
+    </div>
+    <div class="box">
+      <ul class="list" id="navList">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="About.html" class="active">About</a></li>
+        <li><a href="project.html">Projects</a></li>
+        <li><a href="skills.html">Skills</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="page-bg">
+    <div class="about-wrap">
+
+      <div class="about-intro">
+        <div class="about-intro-text">
+          <span class="section-eyebrow reveal">Who I am</span>
+          <h1 class="reveal reveal-delay-1">About <span>Me</span></h1>
+          <p class="reveal reveal-delay-2">
+            I'm a results-driven Full Stack Developer with a strong foundation in the MERN stack.
+            I build responsive, scalable web applications and focus on clean, efficient code that
+            solves real-world problems.
+          </p>
+          <p class="reveal reveal-delay-2">
+            Currently pursuing my BCA while continuously sharpening my skills in modern web technologies.
+            I'm passionate about turning ideas into well-crafted digital products.
+          </p>
+          <div class="reveal reveal-delay-3" style="display:flex;gap:12px;flex-wrap:wrap;">
+            <a href="contact.html" class="btn-primary" style="width:fit-content;">
+              <i class="ri-send-plane-line"></i> Get in Touch
+            </a>
+            <a href="./Suhan_Resume.pdf" download class="resume-download">
+              <i class="ri-download-2-line"></i> Download Resume
+            </a>
+          </div>
+        </div>
+
+        <div class="about-photo-wrap reveal reveal-delay-2">
+          <!-- Photo card -->
+          <div class="about-photo-card">
+            <img src="./suhan4.png" alt="Suhan Qureshi" class="about-photo"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <div class="about-avatar" style="display:none;">SQ</div>
+            <div class="about-name">Suhan Qureshi</div>
+            <div class="about-role">Full Stack Developer</div>
+            <span class="about-open">● Open to Work</span>
+          </div>
+
+          <!-- Quick info -->
+          <div class="sidebar-card">
+            <div class="sidebar-row">
+              <i class="ri-graduation-cap-line"></i>
+              <div><div class="sr-label">Degree</div><div class="sr-val">BCA (Pursuing)</div></div>
+            </div>
+            <div class="sidebar-row">
+              <i class="ri-map-pin-2-line"></i>
+              <div><div class="sr-label">Location</div><div class="sr-val">India</div></div>
+            </div>
+            <div class="sidebar-row">
+              <i class="ri-stack-line"></i>
+              <div><div class="sr-label">Stack</div><div class="sr-val">MERN Stack</div></div>
+            </div>
+            <div class="sidebar-row">
+              <i class="ri-github-line"></i>
+              <div><div class="sr-label">GitHub</div>
+                <a href="https://github.com/SuhanQureshi" target="_blank" class="sr-val" style="color:#a5b4fc;">SuhanQureshi</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Education + Skills -->
+      <div class="resume-grid">
+        <div class="resume-block reveal">
+          <div class="resume-block-title"><i class="ri-graduation-cap-line"></i> Education</div>
+          <div class="edu-item">
+            <div class="edu-degree">BCA (Pursuing)</div>
+            <div class="edu-school">PK University</div>
+            <span class="edu-year">2025 – 2028</span>
+          </div>
+          <div class="edu-item">
+            <div class="edu-degree">12th — Science</div>
+            <div class="edu-school">Shyam Lal Chauhan Inter College, Mathura</div>
+            <span class="edu-year">2025 · 292/500</span>
+          </div>
+          <div class="edu-item">
+            <div class="edu-degree">10th — High School</div>
+            <div class="edu-school">KCGSV MIC Madhav Kunj, Mathura</div>
+            <span class="edu-year">2023</span>
+          </div>
+        </div>
+
+        <div class="resume-block reveal reveal-delay-1">
+          <div class="resume-block-title"><i class="ri-tools-line"></i> Technical Skills</div>
+          <div class="cat-micro">Frontend</div>
+          <div class="skill-tag-list">
+            <span class="skill-tag">HTML</span><span class="skill-tag">CSS</span>
+            <span class="skill-tag">JavaScript</span><span class="skill-tag">React.js</span>
+            <span class="skill-tag">Bootstrap</span>
+          </div>
+          <div class="cat-micro">Backend</div>
+          <div class="skill-tag-list">
+            <span class="skill-tag">Node.js</span><span class="skill-tag">Express.js</span>
+            <span class="skill-tag">MongoDB</span>
+          </div>
+          <div class="cat-micro">Tools</div>
+          <div class="skill-tag-list">
+            <span class="skill-tag">Git</span><span class="skill-tag">GitHub</span>
+            <span class="skill-tag">REST APIs</span><span class="skill-tag">VS Code</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature cards -->
+      <span class="section-eyebrow reveal" style="margin-bottom:24px;display:inline-flex;">My Approach</span>
+      <div class="feature-strip">
+        <div class="feature-card reveal">
+          <div class="feature-icon"><i class="ri-terminal-fill"></i></div>
+          <h3>Clean Code</h3>
+          <p>Maintainable, scalable code following best practices and clear naming conventions.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-1">
+          <div class="feature-icon"><i class="ri-cpu-line"></i></div>
+          <h3>Performance</h3>
+          <p>Optimizing every layer of the stack for maximum speed and minimal load times.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-2">
+          <div class="feature-icon"><i class="ri-global-line"></i></div>
+          <h3>Responsive</h3>
+          <p>Pixel-perfect layouts that work flawlessly on every device and screen size.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer class="footer">
+    <span>© 2026 Suhan Qureshi</span>
+    <div style="display:flex;gap:16px;">
+      <a href="https://github.com/SuhanQureshi" target="_blank" style="color:var(--slate);font-size:20px;"><i class="ri-github-line"></i></a>
+      <a href="https://www.linkedin.com/in/Suhan-Qureshi" target="_blank" style="color:var(--slate);font-size:20px;"><i class="ri-linkedin-fill"></i></a>
+    </div>
+  </footer>
+
+  <script>
+    const themeBtn = document.getElementById('themeBtn');
+    const html = document.documentElement;
+    const saved = localStorage.getItem('theme') || 'dark';
+    html.setAttribute('data-theme', saved);
+    themeBtn.querySelector('i').className = saved === 'dark' ? 'ri-moon-line' : 'ri-sun-line';
+    themeBtn.addEventListener('click', () => {
+      const t = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', t); localStorage.setItem('theme', t);
+      themeBtn.querySelector('i').className = t === 'dark' ? 'ri-moon-line' : 'ri-sun-line';
+    });
+    const menuBtn = document.getElementById('menuBtn');
+    const navList = document.getElementById('navList');
+    menuBtn.addEventListener('click', () => {
+      navList.classList.toggle('active');
+      menuBtn.querySelector('i').className = navList.classList.contains('active') ? 'ri-close-line' : 'ri-menu-line';
+    });
+    const observer = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

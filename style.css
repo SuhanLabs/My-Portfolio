@@ -1,0 +1,202 @@
+/* ═══════════════════════════════════════
+   SUHAN.DEVE — PORTFOLIO CSS
+   Space Grotesk + Inter | Dark / Light
+═══════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+/* ── TOKENS ── */
+:root {
+  --bg:          #020617;
+  --bg-2:        #0d1117;
+  --bg-card:     rgba(15, 23, 42, 0.7);
+  --indigo:      #6366f1;
+  --indigo-dim:  #4f46e5;
+  --indigo-glow: rgba(99,102,241,0.25);
+  --slate:       #94a3b8;
+  --slate-dim:   #475569;
+  --white:       #f1f5f9;
+  --pure:        #ffffff;
+  --border:      rgba(99,102,241,0.2);
+  --border-hi:   rgba(99,102,241,0.5);
+}
+
+/* ── LIGHT MODE ── */
+[data-theme="light"] {
+  --bg:          #f8fafc;
+  --bg-2:        #f1f5f9;
+  --bg-card:     rgba(255,255,255,0.85);
+  --indigo:      #4f46e5;
+  --indigo-dim:  #4338ca;
+  --indigo-glow: rgba(79,70,229,0.15);
+  --slate:       #475569;
+  --slate-dim:   #64748b;
+  --white:       #1e293b;
+  --pure:        #0f172a;
+  --border:      rgba(79,70,229,0.15);
+  --border-hi:   rgba(79,70,229,0.4);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--bg);
+  color: var(--white);
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  min-height: 100vh;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+h1,h2,h3,h4 { font-family: 'Space Grotesk', sans-serif; line-height: 1.2; color: var(--pure); }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+/* ── NAVBAR ── */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 48px;
+  height: 64px;
+  background: rgba(2,6,23,0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  transition: background 0.3s;
+}
+
+[data-theme="light"] .nav {
+  background: rgba(248,250,252,0.9);
+}
+
+.logo {
+  display: flex; align-items: center; gap: 2px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 20px; font-weight: 700; letter-spacing: -0.5px;
+}
+.logo-icon { color: var(--indigo); font-size: 22px; margin-right: 6px; }
+.deve { color: var(--indigo); }
+
+.box .list { display: flex; align-items: center; gap: 4px; }
+.list li a {
+  display: block; padding: 6px 14px;
+  font-size: 14px; font-weight: 500; color: var(--slate);
+  border-radius: 8px; transition: all 0.2s ease;
+}
+.list li a:hover, .list li a.active {
+  color: var(--pure); background: rgba(99,102,241,0.12);
+}
+
+/* Theme toggle */
+.theme-toggle {
+  width: 36px; height: 36px; border-radius: 8px;
+  border: 1px solid var(--border);
+  background: transparent; color: var(--slate);
+  font-size: 16px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s; margin-left: 8px; flex-shrink: 0;
+}
+.theme-toggle:hover { border-color: var(--border-hi); color: var(--indigo); }
+
+.menu-toggle {
+  display: none; font-size: 22px;
+  cursor: pointer; color: var(--white); padding: 4px;
+}
+
+/* ── PAGE BG ── */
+.page-bg {
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(99,102,241,0.15) 0%, transparent 60%),
+    var(--bg);
+  min-height: calc(100vh - 64px);
+}
+
+/* ── SCROLL REVEAL ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ── SECTION EYEBROW ── */
+.section-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--indigo); margin-bottom: 12px;
+}
+.section-eyebrow::before {
+  content: ''; display: inline-block;
+  width: 24px; height: 2px;
+  background: var(--indigo); border-radius: 2px;
+}
+
+/* ── BUTTONS ── */
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 11px 26px; background: var(--indigo);
+  color: #fff; border: none; border-radius: 10px;
+  font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600;
+  cursor: pointer; transition: all 0.2s ease;
+  box-shadow: 0 0 24px rgba(99,102,241,0.3);
+}
+.btn-primary:hover { background: #818cf8; transform: translateY(-2px); box-shadow: 0 0 36px rgba(99,102,241,0.5); }
+
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 11px 26px; background: transparent;
+  color: var(--white); border: 1px solid var(--border-hi);
+  border-radius: 10px; font-family: 'Inter', sans-serif;
+  font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s ease;
+}
+.btn-ghost:hover { border-color: var(--indigo); color: var(--indigo); background: rgba(99,102,241,0.06); transform: translateY(-2px); }
+
+/* ── GLASS CARD ── */
+.glass-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+}
+.glass-card:hover { border-color: var(--border-hi); box-shadow: 0 0 40px var(--indigo-glow); transform: translateY(-4px); }
+
+/* ── FOOTER ── */
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 24px 48px;
+  display: flex; align-items: center; justify-content: space-between;
+  color: var(--slate-dim); font-size: 13px;
+}
+
+/* ── MOBILE ── */
+@media (max-width: 768px) {
+  .nav { padding: 0 20px; flex-wrap: wrap; height: auto; padding: 12px 20px; gap: 10px; }
+  .menu-toggle { display: block; }
+  .box { width: 100%; order: 3; }
+  .box .list {
+    flex-direction: column; width: 100%;
+    max-height: 0; overflow: hidden; opacity: 0;
+    background: rgba(13,17,23,0.95);
+    border: 1px solid var(--border); border-radius: 12px;
+    padding: 0; gap: 4px; transition: all 0.35s ease;
+  }
+  .box .list.active { max-height: 320px; opacity: 1; padding: 12px; }
+  .list li a { padding: 10px 16px; font-size: 15px; }
+  .footer { flex-direction: column; gap: 8px; text-align: center; padding: 20px; }
+}

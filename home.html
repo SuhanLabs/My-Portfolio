@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suhan Qureshi | Full Stack Developer</title>
+  <meta name="description" content="Full Stack Developer Portfolio of Suhan Qureshi — MERN Stack, React, Node.js">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet">
+  <style>
+    /* ── HERO ── */
+    .hero {
+      min-height: calc(100vh - 64px);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 60px;
+      padding: 80px 80px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -80px; right: -80px;
+      width: 480px; height: 480px;
+      background: radial-gradient(circle, rgba(99,102,241,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: -40px; left: -40px;
+      width: 320px; height: 320px;
+      background: radial-gradient(circle, rgba(139,92,246,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative; z-index: 1;
+      display: flex; flex-direction: column; gap: 24px;
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 14px;
+      background: rgba(99,102,241,0.1);
+      border: 1px solid rgba(99,102,241,0.3);
+      border-radius: 100px; font-size: 13px; font-weight: 500;
+      color: #a5b4fc; width: fit-content;
+    }
+    .hero-badge .dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: #4ade80; box-shadow: 0 0 8px #4ade80;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity:1; transform:scale(1); }
+      50%      { opacity:0.6; transform:scale(1.3); }
+    }
+
+    .hero-headline {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.6rem,5vw,4.2rem);
+      font-weight: 700; line-height: 1.1; letter-spacing: -1px;
+      color: var(--pure);
+    }
+    .hero-headline .accent {
+      background: linear-gradient(135deg,#6366f1 0%,#a78bfa 50%,#60a5fa 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+
+    .hero-sub { font-size: 16px; color: var(--slate); max-width: 460px; line-height: 1.75; }
+
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 4px; }
+
+    .hero-stats {
+      display: flex; gap: 36px; margin-top: 8px;
+      padding-top: 28px; border-top: 1px solid var(--border);
+    }
+    .stat-item .num { font-family: 'Space Grotesk',sans-serif; font-size: 26px; font-weight: 700; color: var(--pure); }
+    .stat-item .label { font-size: 12px; color: var(--slate); margin-top: 2px; }
+
+    /* Right side */
+    .hero-right {
+      position: relative; z-index: 1;
+      display: flex; flex-direction: column; gap: 20px;
+    }
+
+    /* Profile photo card */
+    .photo-code-stack {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .profile-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      backdrop-filter: blur(8px);
+    }
+
+    .profile-photo-wrap {
+      position: relative; flex-shrink: 0;
+    }
+
+    .profile-photo {
+      width: 88px; height: 88px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--border-hi);
+      box-shadow: 0 0 0 4px rgba(99,102,241,0.15);
+      display: block;
+    }
+
+    /* Placeholder avatar when no photo */
+    .profile-avatar {
+      width: 88px; height: 88px; border-radius: 50%;
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      border: 2px solid var(--border-hi);
+      box-shadow: 0 0 0 4px rgba(99,102,241,0.15);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 32px; font-weight: 700; color: #fff;
+      flex-shrink: 0;
+    }
+
+    .profile-status-dot {
+      position: absolute; bottom: 4px; right: 4px;
+      width: 14px; height: 14px; border-radius: 50%;
+      background: #4ade80;
+      border: 2px solid var(--bg);
+      box-shadow: 0 0 8px #4ade80;
+    }
+
+    .profile-info .name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 17px; font-weight: 700; color: var(--pure);
+    }
+    .profile-info .role {
+      font-size: 13px; color: var(--slate); margin-top: 3px;
+    }
+    .profile-info .tag {
+      display: inline-block; margin-top: 8px;
+      padding: 3px 10px;
+      background: rgba(74,222,128,0.1);
+      border: 1px solid rgba(74,222,128,0.3);
+      border-radius: 100px; font-size: 11px; color: #4ade80;
+    }
+
+    /* Code window */
+    .code-window {
+      background: rgba(13,17,23,0.9);
+      border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.4);
+    }
+    .code-titlebar {
+      display: flex; align-items: center; gap: 8px;
+      padding: 14px 18px; border-bottom: 1px solid var(--border);
+      background: rgba(99,102,241,0.04);
+    }
+    .dot-r { width:12px;height:12px;border-radius:50%;background:#ff5f57; }
+    .dot-y { width:12px;height:12px;border-radius:50%;background:#febc2e; }
+    .dot-g { width:12px;height:12px;border-radius:50%;background:#28c840; }
+    .code-filename { margin-left:10px;font-size:12px;color:var(--slate);font-family:'Inter',sans-serif; }
+
+    .code-body {
+      padding: 20px 24px;
+      font-family: 'Fira Code','Courier New',monospace;
+      font-size: 13px; line-height: 2; color: #e2e8f0; min-height: 180px;
+    }
+    .c-key   { color:#c084fc; }
+    .c-var   { color:#60a5fa; }
+    .c-str   { color:#86efac; }
+    .c-fn    { color:#fbbf24; }
+    .c-punct { color:#94a3b8; }
+
+    .tech-pills { display:flex;flex-wrap:wrap;gap:10px; }
+    .tech-pill {
+      padding:6px 14px;
+      background:rgba(99,102,241,0.08); border:1px solid var(--border);
+      border-radius:100px; font-size:13px; color:#a5b4fc; font-weight:500; transition:all 0.2s;
+    }
+    .tech-pill:hover { background:rgba(99,102,241,0.18);border-color:var(--indigo); }
+
+    @media (max-width:900px) {
+      .hero { grid-template-columns:1fr; padding:48px 24px; gap:40px; min-height:auto; }
+      .hero-stats { gap:20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="logo"><i class="ri-code-s-slash-line logo-icon"></i>Suhan<span class="deve">.deve</span></div>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <button class="theme-toggle" id="themeBtn" title="Toggle theme"><i class="ri-moon-line"></i></button>
+      <div class="menu-toggle" id="menuBtn"><i class="ri-menu-line"></i></div>
+    </div>
+    <div class="box">
+      <ul class="list" id="navList">
+        <li><a href="home.html" class="active">Home</a></li>
+        <li><a href="About.html">About</a></li>
+        <li><a href="project.html">Projects</a></li>
+        <li><a href="skills.html">Skills</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="page-bg">
+    <section class="hero">
+
+      <!-- LEFT -->
+      <div class="hero-content">
+        <div class="hero-badge reveal"><span class="dot"></span>Available for opportunities</div>
+        <h1 class="hero-headline reveal reveal-delay-1">
+          Building<br><span class="accent">digital experiences</span><br>that matter.
+        </h1>
+        <p class="hero-sub reveal reveal-delay-2">
+          I'm Suhan Qureshi, a Full Stack Developer (MERN) focused on crafting fast,
+          responsive, and scalable web applications with clean code and thoughtful design.
+        </p>
+        <div class="hero-btns reveal reveal-delay-3">
+          <a href="project.html" class="btn-primary"><i class="ri-eye-line"></i> View Projects</a>
+          <a href="contact.html" class="btn-ghost"><i class="ri-send-plane-line"></i> Contact Me</a>
+        </div>
+        <div class="hero-stats reveal reveal-delay-4">
+          <div class="stat-item"><div class="num">5+</div><div class="label">Projects Built</div></div>
+          <div class="stat-item"><div class="num">MERN</div><div class="label">Stack</div></div>
+          <div class="stat-item"><div class="num">2025</div><div class="label">Started Coding</div></div>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="hero-right reveal reveal-delay-2">
+        <div class="photo-code-stack">
+
+          <!-- Profile card -->
+          <div class="profile-card">
+            <div class="profile-photo-wrap">
+              <!-- Replace src with your actual photo path e.g. ./suhan4.png -->
+              <img src="./suhan4.png" alt="Suhan Qureshi" class="profile-photo"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="profile-avatar" style="display:none;">SQ</div>
+              <span class="profile-status-dot"></span>
+            </div>
+            <div class="profile-info">
+              <div class="name">Suhan Qureshi</div>
+              <div class="role">Full Stack Developer · MERN</div>
+              <span class="tag">● Open to Work</span>
+            </div>
+          </div>
+
+          <!-- Code window -->
+          <div class="code-window">
+            <div class="code-titlebar">
+              <span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span>
+              <span class="code-filename">developer.js</span>
+            </div>
+            <div class="code-body" id="typingCode"></div>
+          </div>
+
+        </div>
+
+        <div class="tech-pills">
+          <span class="tech-pill"><i class="ri-reactjs-line"></i> React</span>
+          <span class="tech-pill">Node.js</span>
+          <span class="tech-pill">Express.js</span>
+          <span class="tech-pill">MongoDB</span>
+          <span class="tech-pill">JavaScript</span>
+          <span class="tech-pill">REST APIs</span>
+        </div>
+      </div>
+
+    </section>
+  </div>
+
+  <footer class="footer">
+    <span>© 2026 Suhan Qureshi</span>
+    <div style="display:flex;gap:16px;">
+      <a href="https://github.com/SuhanQureshi" target="_blank" style="color:var(--slate);font-size:20px;transition:color 0.2s;" onmouseover="this.style.color='var(--indigo)'" onmouseout="this.style.color='var(--slate)'"><i class="ri-github-line"></i></a>
+      <a href="https://www.linkedin.com/in/Suhan-Qureshi" target="_blank" style="color:var(--slate);font-size:20px;transition:color 0.2s;" onmouseover="this.style.color='var(--indigo)'" onmouseout="this.style.color='var(--slate)'"><i class="ri-linkedin-fill"></i></a>
+      <a href="https://wa.me/918445483230" target="_blank" style="color:var(--slate);font-size:20px;transition:color 0.2s;" onmouseover="this.style.color='var(--indigo)'" onmouseout="this.style.color='var(--slate)'"><i class="ri-whatsapp-line"></i></a>
+    </div>
+  </footer>
+
+  <script>
+    /* ── THEME ── */
+    const themeBtn = document.getElementById('themeBtn');
+    const html = document.documentElement;
+    const saved = localStorage.getItem('theme') || 'dark';
+    html.setAttribute('data-theme', saved);
+    themeBtn.querySelector('i').className = saved === 'dark' ? 'ri-moon-line' : 'ri-sun-line';
+
+    themeBtn.addEventListener('click', () => {
+      const t = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', t);
+      localStorage.setItem('theme', t);
+      themeBtn.querySelector('i').className = t === 'dark' ? 'ri-moon-line' : 'ri-sun-line';
+    });
+
+    /* ── NAV TOGGLE ── */
+    const menuBtn = document.getElementById('menuBtn');
+    const navList = document.getElementById('navList');
+    menuBtn.addEventListener('click', () => {
+      navList.classList.toggle('active');
+      menuBtn.querySelector('i').className = navList.classList.contains('active') ? 'ri-close-line' : 'ri-menu-line';
+    });
+
+    /* ── SCROLL REVEAL ── */
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    /* ── TYPING ANIMATION ── */
+    const lines = [
+      `<span class="c-key">const</span> <span class="c-var">developer</span> <span class="c-punct">= {</span>`,
+      `  <span class="c-var">name</span><span class="c-punct">:</span> <span class="c-str">"Suhan Qureshi"</span><span class="c-punct">,</span>`,
+      `  <span class="c-var">role</span><span class="c-punct">:</span> <span class="c-str">"Full Stack Dev"</span><span class="c-punct">,</span>`,
+      `  <span class="c-var">stack</span><span class="c-punct">: [</span><span class="c-str">"React"</span><span class="c-punct">,</span> <span class="c-str">"Node"</span><span class="c-punct">,</span> <span class="c-str">"Mongo"</span><span class="c-punct">],</span>`,
+      `  <span class="c-var">hardWorker</span><span class="c-punct">:</span> <span class="c-key">true</span><span class="c-punct">,</span>`,
+      `  <span class="c-var">coffee</span><span class="c-punct">:</span> <span class="c-key">true</span>`,
+      `<span class="c-punct">};</span>`,
+      ``,
+      `<span class="c-var">developer</span><span class="c-punct">.</span><span class="c-fn">build</span><span class="c-punct">(</span><span class="c-str">"awesome things"</span><span class="c-punct">);</span>`,
+    ];
+    const el = document.getElementById('typingCode');
+    let li = 0;
+    function nextLine() {
+      if (li < lines.length) {
+        el.innerHTML += (li > 0 ? '<br>' : '') + lines[li++];
+        setTimeout(nextLine, 150);
+      }
+    }
+    window.addEventListener('load', nextLine);
+  </script>
+</body>
+</html>

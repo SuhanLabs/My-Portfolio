@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects | Suhan Qureshi</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet">
+  <style>
+    .projects-wrap { max-width:1060px;margin:0 auto;padding:72px 32px 80px; }
+
+    .projects-header { text-align:center;margin-bottom:48px; }
+    .projects-header h1 { font-size:clamp(2rem,4vw,3rem);letter-spacing:-0.5px;margin-bottom:12px; }
+    .projects-header h1 span { background:linear-gradient(135deg,#6366f1,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
+    .projects-header p { color:var(--slate);font-size:16px; }
+
+    /* Filter tabs */
+    .filter-tabs {
+      display: flex; gap: 8px; justify-content: center;
+      flex-wrap: wrap; margin-bottom: 40px;
+    }
+    .filter-tab {
+      padding: 7px 18px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 100px; color: var(--slate);
+      font-size: 13px; font-weight: 500;
+      cursor: pointer; font-family: 'Inter',sans-serif;
+      transition: all 0.2s;
+    }
+    .filter-tab:hover { border-color: var(--border-hi); color: var(--white); }
+    .filter-tab.active {
+      background: var(--indigo); border-color: var(--indigo);
+      color: #fff; box-shadow: 0 0 16px rgba(99,102,241,0.3);
+    }
+
+    .projects-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px; }
+
+    .project-card {
+      background:var(--bg-card);border:1px solid var(--border);
+      border-radius:18px;padding:28px;display:flex;flex-direction:column;gap:16px;
+      transition:all 0.3s ease;position:relative;overflow:hidden;
+    }
+    .project-card::before {
+      content:'';position:absolute;inset:0;opacity:0;transition:opacity 0.3s;
+      background:radial-gradient(circle at 80% 0%,rgba(99,102,241,0.08),transparent 60%);
+      pointer-events:none;
+    }
+    .project-card:hover { border-color:var(--border-hi);box-shadow:0 8px 40px var(--indigo-glow);transform:translateY(-6px); }
+    .project-card:hover::before { opacity:1; }
+
+    .project-card[style*="display:none"] { display:none !important; }
+
+    .card-top { display:flex;align-items:flex-start;justify-content:space-between; }
+    .card-icon-wrap {
+      width:48px;height:48px;border-radius:12px;
+      background:rgba(99,102,241,0.12);border:1px solid var(--border);
+      display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--indigo);
+    }
+    .card-links { display:flex;gap:8px; }
+    .card-link {
+      width:34px;height:34px;border-radius:8px;border:1px solid var(--border);
+      display:flex;align-items:center;justify-content:center;
+      color:var(--slate);font-size:16px;transition:all 0.2s;
+    }
+    .card-link:hover { border-color:var(--indigo);color:var(--indigo);background:rgba(99,102,241,0.08); }
+    .project-card h3 { font-size:18px;margin:0; }
+    .project-card p { color:var(--slate);font-size:14px;line-height:1.65;flex:1; }
+
+    .tech-stack { display:flex;flex-wrap:wrap;gap:7px; }
+    .tech-badge {
+      padding:4px 11px;background:rgba(99,102,241,0.08);border:1px solid var(--border);
+      border-radius:100px;font-size:12px;color:#a5b4fc;font-weight:500;
+    }
+
+    @media(max-width:640px) { .projects-grid { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="logo"><i class="ri-code-s-slash-line logo-icon"></i>Suhan<span class="deve">.deve</span></div>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <button class="theme-toggle" id="themeBtn"><i class="ri-moon-line"></i></button>
+      <div class="menu-toggle" id="menuBtn"><i class="ri-menu-line"></i></div>
+    </div>
+    <div class="box">
+      <ul class="list" id="navList">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="About.html">About</a></li>
+        <li><a href="project.html" class="active">Projects</a></li>
+        <li><a href="skills.html">Skills</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="page-bg">
+    <div class="projects-wrap">
+      <div class="projects-header reveal">
+        <span class="section-eyebrow">Portfolio</span>
+        <h1>Featured <span>Projects</span></h1>
+        <p>Web solutions built with modern technologies and a focus on performance.</p>
+      </div>
+
+      <!-- Filter tabs -->
+      <div class="filter-tabs reveal">
+        <button class="filter-tab active" data-filter="all">All</button>
+        <button class="filter-tab" data-filter="frontend">Frontend</button>
+        <button class="filter-tab" data-filter="fullstack">Full Stack</button>
+        <button class="filter-tab" data-filter="tools">Tools / UI</button>
+      </div>
+
+      <div class="projects-grid" id="projectsGrid">
+
+        <div class="project-card reveal" data-category="frontend">
+          <div class="card-top">
+            <div class="card-icon-wrap"><i class="ri-sun-cloudy-line"></i></div>
+            <div class="card-links">
+              <a href="weather-output.html" class="card-link" title="Live Demo"><i class="ri-external-link-line"></i></a>
+              <a href="https://github.com/SuhanQureshi" target="_blank" class="card-link" title="Code"><i class="ri-github-line"></i></a>
+            </div>
+          </div>
+          <h3>Weather App</h3>
+          <p>Real-time weather tracking using OpenWeather API with a glassmorphism UI and location-based data.</p>
+          <div class="tech-stack"><span class="tech-badge">React</span><span class="tech-badge">REST API</span><span class="tech-badge">CSS3</span></div>
+        </div>
+
+        <div class="project-card reveal reveal-delay-1" data-category="fullstack">
+          <div class="card-top">
+            <div class="card-icon-wrap"><i class="ri-shield-user-line"></i></div>
+            <div class="card-links">
+              <a href="auth-output.html" class="card-link" title="Live Demo"><i class="ri-external-link-line"></i></a>
+              <a href="#" class="card-link" title="Code"><i class="ri-github-line"></i></a>
+            </div>
+          </div>
+          <h3>Secure Auth System</h3>
+          <p>Full-stack authentication with JWT tokens and bcrypt hashing. Login, signup, and protected routes.</p>
+          <div class="tech-stack"><span class="tech-badge">Node.js</span><span class="tech-badge">JWT</span><span class="tech-badge">MongoDB</span><span class="tech-badge">Express</span></div>
+        </div>
+
+        <div class="project-card reveal reveal-delay-2" data-category="tools">
+          <div class="card-top">
+            <div class="card-icon-wrap"><i class="ri-calculator-line"></i></div>
+            <div class="card-links">
+              <a href="calc-output.html" class="card-link" title="Live Demo"><i class="ri-external-link-line"></i></a>
+              <a href="#" class="card-link" title="Code"><i class="ri-github-line"></i></a>
+            </div>
+          </div>
+          <h3>Smart Calculator</h3>
+          <p>Neumorphic-design calculator with complex logic, smooth animations, and keyboard support.</p>
+          <div class="tech-stack"><span class="tech-badge">JavaScript</span><span class="tech-badge">HTML5</span><span class="tech-badge">CSS Grid</span></div>
+        </div>
+
+        <div class="project-card reveal" data-category="tools">
+          <div class="card-top">
+            <div class="card-icon-wrap"><i class="ri-side-bar-line"></i></div>
+            <div class="card-links">
+              <a href="sidebar-output.html" class="card-link" title="Live Demo"><i class="ri-external-link-line"></i></a>
+              <a href="#" class="card-link" title="Code"><i class="ri-github-line"></i></a>
+            </div>
+          </div>
+          <h3>Dynamic Sidebar</h3>
+          <p>Advanced navigation component with smooth transitions, active state management, and mobile-first design.</p>
+          <div class="tech-stack"><span class="tech-badge">Vanilla JS</span><span class="tech-badge">DOM API</span><span class="tech-badge">CSS</span></div>
+        </div>
+
+        <div class="project-card reveal reveal-delay-1" data-category="tools">
+          <div class="card-top">
+            <div class="card-icon-wrap"><i class="ri-layout-masonry-line"></i></div>
+            <div class="card-links">
+              <a href="uikit-output.html" class="card-link" title="Live Demo"><i class="ri-external-link-line"></i></a>
+              <a href="#" class="card-link" title="Code"><i class="ri-github-line"></i></a>
+            </div>
+          </div>
+          <h3>Pro UI Kit</h3>
+          <p>A library of reusable, responsive components — buttons, cards, modals, forms — for modern web apps.</p>
+          <div class="tech-stack"><span class="tech-badge">SASS</span><span class="tech-badge">Responsive</span><span class="tech-badge">UI/UX</span></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <span>© 2026 Suhan Qureshi</span>
+    <div style="display:flex;gap:16px;">
+      <a href="https://github.com/SuhanQureshi" target="_blank" style="color:var(--slate);font-size:20px;"><i class="ri-github-line"></i></a>
+      <a href="https://www.linkedin.com/in/Suhan-Qureshi" target="_blank" style="color:var(--slate);font-size:20px;"><i class="ri-linkedin-fill"></i></a>
+    </div>
+  </footer>
+
+  <script>
+    const themeBtn = document.getElementById('themeBtn');
+    const html = document.documentElement;
+    const saved = localStorage.getItem('theme') || 'dark';
+    html.setAttribute('data-theme', saved);
+    themeBtn.querySelector('i').className = saved === 'dark' ? 'ri-moon-line' : 'ri-sun-line';
+    themeBtn.addEventListener('click', () => {
+      const t = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', t); localStorage.setItem('theme', t);
+      themeBtn.querySelector('i').className = t === 'dark' ? 'ri-moon-line' : 'ri-sun-line';
+    });
+    const menuBtn = document.getElementById('menuBtn');
+    const navList = document.getElementById('navList');
+    menuBtn.addEventListener('click', () => {
+      navList.classList.toggle('active');
+      menuBtn.querySelector('i').className = navList.classList.contains('active') ? 'ri-close-line' : 'ri-menu-line';
+    });
+    const observer = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Filter logic
+    const tabs = document.querySelectorAll('.filter-tab');
+    const cards = document.querySelectorAll('.project-card');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const f = tab.dataset.filter;
+        cards.forEach(card => {
+          const show = f === 'all' || card.dataset.category === f;
+          card.style.display = show ? '' : 'none';
+        });
+      });
+    });
+  </script>
+</body>
+</html>
