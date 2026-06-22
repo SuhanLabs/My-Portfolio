@@ -133,6 +133,11 @@
           <h2>Send a Message</h2>
           <p class="sub">Fill out the form and I'll get back to you soon.</p>
           <form id="contact-form">
+            <input type="hidden" name="access_key" value="c0f26874-6cbc-43c9-99bd-b8ae24ccb0cf">
+            <input type="hidden" name="subject" value="New message from Portfolio Contact Form">
+            <input type="hidden" name="from_name" value="Suhan Portfolio">
+            <input type="checkbox" name="botcheck" style="display:none;">
+
             <div class="form-group">
               <label for="name">Your Name</label>
               <input type="text" id="name" name="name" placeholder="Your full name" required>
@@ -162,7 +167,6 @@
     </div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <script>
     const themeBtn = document.getElementById('themeBtn');
     const html = document.documentElement;
@@ -183,7 +187,6 @@
     const observer = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    emailjs.init("-44C6K0Rx_-l7RNjC");
     const form = document.getElementById("contact-form");
     const submitBtn = document.getElementById("submitBtn");
 
@@ -191,17 +194,39 @@
       e.preventDefault();
       submitBtn.innerHTML = '<i class="ri-loader-4-line"></i> Sending...';
       submitBtn.disabled = true;
-      emailjs.sendForm("service_7xah8mg","template_t0sxc4t",this)
-        .then(() => {
-          submitBtn.innerHTML = '<i class="ri-check-line"></i> Message Sent!';
-          submitBtn.style.background = '#16a34a';
-          form.reset();
-          setTimeout(() => { submitBtn.innerHTML='<i class="ri-send-plane-fill"></i> Send Message';submitBtn.style.background='';submitBtn.disabled=false; }, 3000);
+
+      const formData = new FormData(form);
+      const object = Object.fromEntries(formData);
+      const json = JSON.stringify(object);
+
+      fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: json
+      })
+        .then(async (response) => {
+          let result = await response.json();
+          if (result.success) {
+            submitBtn.innerHTML = '<i class="ri-check-line"></i> Message Sent!';
+            submitBtn.style.background = '#16a34a';
+            form.reset();
+          } else {
+            throw new Error(result.message || "Submission failed");
+          }
         })
         .catch(() => {
           submitBtn.innerHTML = '<i class="ri-error-warning-line"></i> Failed — Try Again';
-          submitBtn.style.background = '#dc2626'; submitBtn.disabled = false;
-          setTimeout(() => { submitBtn.innerHTML='<i class="ri-send-plane-fill"></i> Send Message';submitBtn.style.background=''; }, 3000);
+          submitBtn.style.background = '#dc2626';
+        })
+        .finally(() => {
+          setTimeout(() => {
+            submitBtn.innerHTML = '<i class="ri-send-plane-fill"></i> Send Message';
+            submitBtn.style.background = '';
+            submitBtn.disabled = false;
+          }, 3000);
         });
     });
   </script>
